@@ -8,7 +8,6 @@ import com.inti.entities.Tache;
 @Repository
 public interface TacheRepository extends JpaRepository<Tache, Long> {
 
-	Tache findByIdUser(Long idTache);
 
 }
 

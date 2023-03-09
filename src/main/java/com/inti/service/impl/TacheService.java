@@ -19,18 +19,11 @@ public class TacheService implements ITacheService {
 	public List<Tache> findAll() {
 		return tacheRepository.findAll();
 	}
-	
-	@Override
-	public Tache findByIdUser(Long idTache) {
-		return tacheRepository.findByIdUser(idTache);
-	}
-	
+
 	@Override
 	public Tache save(Tache tache) {
 		return tacheRepository.save(tache);
 	}
-	
-	
 
 	@Override
 	public void delete(Long idTache) {

@@ -7,14 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="PHASE", schema ="gestion_contentieux")
-public class Phase implements Serializable{
-	
+@Table(name = "PHASE", schema = "gestion_contentieux")
+public class Phase implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPhase;
@@ -23,31 +25,26 @@ public class Phase implements Serializable{
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
-	
-	
-	/*@ManyToOne
-	 * @JoinColumn(name="id_tache")
-	 * private Tache tacheFK;
-	 * */
-	
-	public Phase() {}
+
+	@ManyToOne
+	@JoinColumn(name = "id_tache")
+	private Tache tacheFK;
+
+	public Phase() {
+	}
 
 	public Phase(String nom, Date dateDebut, Date dateFin) {
 		this.nom = nom;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
-	
-	/*
-	
+
 	public Phase(String nom, Date dateDebut, Date dateFin, Tache tacheFK) {
 		this.nom = nom;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.tacheFK = tacheFK;
 	}
-
-*/
 
 	public Long getIdPhase() {
 		return idPhase;
@@ -80,24 +77,19 @@ public class Phase implements Serializable{
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
-	
-	
-	/*public Tache getTacheFK(){
-	 * return tacheFK;}
-	 * 
-	 * public void setTacheFK (Tache taheFK) {
-	 * this.tacheFK = tacheFK;}
-	 *
-	 * */
 
+	public Tache getTacheFK() {
+		return tacheFK;
+	}
 
-	
-	//Modifier la méthode en ajoutant Tache
-	
+	public void setTacheFK(Tache tacheFK) {
+		this.tacheFK = tacheFK;
+	}
+
 	@Override
 	public String toString() {
-		return "Phase [idPhase=" + idPhase + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
+		return "Phase [idPhase=" + idPhase + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", tacheFK=" + tacheFK + "]";
 	}
-	
 
 }

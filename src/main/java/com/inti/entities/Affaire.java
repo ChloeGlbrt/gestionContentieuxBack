@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name= "AFFAIRES", schema="gestion_contentieux")
+@Table(name = "AFFAIRES", schema = "gestion_contentieux")
 public class Affaire implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +23,15 @@ public class Affaire implements Serializable {
 	private String titre;
 	private String description;
 	private int statut;
-	
+
 	@OneToMany(mappedBy = "affaireFK")
 	@Transient
 	private List<Document> documents = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "affaireFK")
 	@Transient
 	private List<Tache> taches = new ArrayList<>();
-	
-	
+
 	public Affaire() {
 
 	}
@@ -43,14 +42,23 @@ public class Affaire implements Serializable {
 		this.description = description;
 		this.statut = statut;
 	}
-	
+
 	public Affaire(String reference, String titre, String description, int statut, List<Document> documents) {
-		super();
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
 		this.statut = statut;
 		this.documents = documents;
+	}
+
+	public Affaire(String reference, String titre, String description, int statut, List<Document> documents,
+			List<Tache> taches) {
+		this.reference = reference;
+		this.titre = titre;
+		this.description = description;
+		this.statut = statut;
+		this.documents = documents;
+		this.taches = taches;
 	}
 
 	public Long getIdAffaire() {
@@ -92,13 +100,21 @@ public class Affaire implements Serializable {
 	public void setStatut(int statut) {
 		this.statut = statut;
 	}
-	
+
 	public List<Document> getDocuments() {
 		return documents;
 	}
 
 	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
+	}
+
+	public List<Tache> getTaches() {
+		return taches;
+	}
+
+	public void setTaches(List<Tache> taches) {
+		this.taches = taches;
 	}
 
 	@Override

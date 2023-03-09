@@ -22,34 +22,34 @@ public class TacheController {
 	ITacheService tacheService;
 	
 
-	@GetMapping("/Taches") 
+	@GetMapping("/taches") 
 	public List<Tache> findAll() {
 		return tacheService.findAll();
 	}
 
-	@GetMapping("/Taches/{idTache}") 
+	@GetMapping("/taches/{idTache}") 
 	public Tache findOne(@PathVariable("idTache") Long idTache) {
 		return tacheService.findOne(idTache);
 	}
 
-	@PostMapping("/Taches")
-	public Tache save(@RequestBody Tache Tache) {
-		return tacheService.save(Tache);
+	@PostMapping("/taches")
+	public Tache save(@RequestBody Tache tache) {
+		return tacheService.save(tache);
 	}
 
-	@DeleteMapping("/Taches/{idTache}")
+	@DeleteMapping("/taches/{idTache}")
 	public void delete(@PathVariable("idTache") Long idTache) {
 		tacheService.delete(idTache);
 	}
 
-	@PutMapping("/Taches/{idTache}")
-	public Tache updateWithPut(@PathVariable("idTache") Long idTache, @RequestBody Tache Tache) {
+	@PutMapping("/taches/{idTache}")
+	public Tache updateWithPut(@PathVariable("idTache") Long idTache, @RequestBody Tache tache) {
 		Tache currentTache = tacheService.findOne(idTache);
 		System.out.println(currentTache.toString());
-		currentTache.setTitre(Tache.getTitre());
-		currentTache.setDescription(Tache.getDescription());
-		currentTache.setDateCreation(Tache.getDateCreation());
-		currentTache.setStatutAudience(Tache.isStatutAudience());
+		currentTache.setTitre(tache.getTitre());
+		currentTache.setDescription(tache.getDescription());
+		currentTache.setDateCreation(tache.getDateCreation());
+		currentTache.setStatutAudience(tache.isStatutAudience());
 		return tacheService.save(currentTache);
 	}
 

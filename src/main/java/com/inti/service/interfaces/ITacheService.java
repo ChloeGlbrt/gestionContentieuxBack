@@ -8,8 +8,6 @@ public interface ITacheService {
 
 	public List<Tache> findAll();
 
-	Tache findByIdUser(Long idTache);
-
 	Tache save(Tache tache);
 
 	Tache findOne(Long idTache);
