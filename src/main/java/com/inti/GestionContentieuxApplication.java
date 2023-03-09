@@ -2,6 +2,8 @@ package com.inti;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class GestionContentieuxApplication {
@@ -9,5 +11,9 @@ public class GestionContentieuxApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionContentieuxApplication.class, args);
 	}
-
+	// Injecter l'instance de la classe BCryptPasswordEncoder dans le context du Spring
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
