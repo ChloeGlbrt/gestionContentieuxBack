@@ -20,8 +20,8 @@ public class Tribunal implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTribunal;
 	private String adresse;
-	private String fax;
-	private String tel;
+	private int fax;
+	private int tel;
 	private String region;
 
 	@OneToMany(mappedBy = "tribunalFK")
@@ -31,14 +31,14 @@ public class Tribunal implements Serializable {
 	public Tribunal() {
 	}
 
-	public Tribunal(String adresse, String fax, String tel, String region) {
+	public Tribunal(String adresse, int fax, int tel, String region) {
 		this.adresse = adresse;
 		this.fax = fax;
 		this.tel = tel;
 		this.region = region;
 	}
 
-	public Tribunal(String adresse, String fax, String tel, String region, List<Tache> taches) {
+	public Tribunal(String adresse, int fax, int tel, String region, List<Tache> taches) {
 		this.adresse = adresse;
 		this.fax = fax;
 		this.tel = tel;
@@ -62,19 +62,19 @@ public class Tribunal implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public String getFax() {
+	public int getFax() {
 		return fax;
 	}
 
-	public void setFax(String fax) {
+	public void setFax(int fax) {
 		this.fax = fax;
 	}
 
-	public String getTel() {
+	public int getTel() {
 		return tel;
 	}
 
-	public void setTel(String tel) {
+	public void setTel(int tel) {
 		this.tel = tel;
 	}
 

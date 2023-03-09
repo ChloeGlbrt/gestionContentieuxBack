@@ -22,7 +22,7 @@ public class Affaire implements Serializable {
 	private String reference;
 	private String titre;
 	private String description;
-	private int statut;
+	private boolean statut;
 
 	@OneToMany(mappedBy = "affaireFK")
 	@Transient
@@ -36,14 +36,14 @@ public class Affaire implements Serializable {
 
 	}
 
-	public Affaire(String reference, String titre, String description, int statut) {
+	public Affaire(String reference, String titre, String description, boolean statut) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
 		this.statut = statut;
 	}
 
-	public Affaire(String reference, String titre, String description, int statut, List<Document> documents) {
+	public Affaire(String reference, String titre, String description, boolean statut, List<Document> documents) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
@@ -51,7 +51,7 @@ public class Affaire implements Serializable {
 		this.documents = documents;
 	}
 
-	public Affaire(String reference, String titre, String description, int statut, List<Document> documents,
+	public Affaire(String reference, String titre, String description, boolean statut, List<Document> documents,
 			List<Tache> taches) {
 		this.reference = reference;
 		this.titre = titre;
@@ -93,11 +93,11 @@ public class Affaire implements Serializable {
 		this.description = description;
 	}
 
-	public int getStatut() {
+	public boolean getStatut() {
 		return statut;
 	}
 
-	public void setStatut(int statut) {
+	public void setStatut(boolean statut) {
 		this.statut = statut;
 	}
 
