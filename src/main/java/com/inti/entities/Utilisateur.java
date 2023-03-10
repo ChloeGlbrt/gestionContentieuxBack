@@ -1,6 +1,5 @@
 package com.inti.entities;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
 @Entity
 @Table(name = "UTILISATEURS", schema = "gestion_contentieux")
 public class Utilisateur implements Serializable {
@@ -35,49 +33,49 @@ public class Utilisateur implements Serializable {
 	@Column(unique = true)
 	private String username;
 	private String password;
+	private boolean statutCompte;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "PROFILS", joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "idUtilisateur"), inverseJoinColumns = @JoinColumn(name = "id_role", referencedColumnName = "idRole"))
 	private Set<Role> roles = new HashSet<>();
-	
-	
+
 	@OneToMany(mappedBy = "utilisateurFK")
 	@Transient
 	private List<Tache> taches = new ArrayList<>();
-	
-	
+
 	public Utilisateur() {
 
 	}
 
-	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username,
-			String password) {
+	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
+			boolean statutCompte) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
+		this.statutCompte = statutCompte;
 	}
 
 	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
-			Set<Role> roles) {
+			boolean statutCompte, Set<Role> roles) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
+		this.statutCompte = statutCompte;
 		this.roles = roles;
 	}
-	
-	
 
 	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
-			Set<Role> roles, List<Tache> taches) {
+			boolean statutCompte, Set<Role> roles, List<Tache> taches) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
+		this.statutCompte = statutCompte;
 		this.roles = roles;
 		this.taches = taches;
 	}
@@ -137,7 +135,6 @@ public class Utilisateur implements Serializable {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
 
 	public List<Tache> getTaches() {
 		return taches;
@@ -147,11 +144,19 @@ public class Utilisateur implements Serializable {
 		this.taches = taches;
 	}
 
+	public boolean isStatutCompte() {
+		return statutCompte;
+	}
+
+	public void setStatutCompte(boolean statutCompte) {
+		this.statutCompte = statutCompte;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", email=" + email + ", nomUtilisateur=" + nomUtilisateur
 				+ ", prenomUtilisateur=" + prenomUtilisateur + ", username=" + username + ", password=" + password
-				+ ", roles=" + roles + "]";
+				+ ", statutCompte=" + statutCompte + ", roles=" + roles + "]";
 	}
 
 }
