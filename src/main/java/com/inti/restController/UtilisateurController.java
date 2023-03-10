@@ -35,7 +35,7 @@ public class UtilisateurController {
 	public Utilisateur findOne(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOne(id);
 	}
-
+/*
 	@PostMapping("/utilisateurs")
 	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
 		Utilisateur currUtilisateur = new Utilisateur(utilisateur.getNomUtilisateur(),
@@ -44,6 +44,17 @@ public class UtilisateurController {
 				utilisateur.getEmail(), utilisateur.getRoles());
 		return utilisateurService.save(currUtilisateur);
 	}
+	*/
+	@PostMapping("/utilisateurs")
+	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
+		Utilisateur currUtilisateur = new Utilisateur(utilisateur.getEmail(),utilisateur.getNomUtilisateur(),
+				utilisateur.getPrenomUtilisateur(),
+				utilisateur.getUsername(),
+				passwordEncoder.encode(utilisateur.getPassword()),
+				utilisateur.getRoles());
+		return utilisateurService.save(currUtilisateur);
+	}
+	
 
 	@DeleteMapping("/utilisateurs/{idUtilisateur}")
 	public void deleteUtilisateur(@PathVariable("idUtilisateur") Long id) {
@@ -55,11 +66,11 @@ public class UtilisateurController {
 			@RequestBody Utilisateur utilisateur) { //
 		Utilisateur currentUser = utilisateurService.findOne(id);
 		System.out.println(currentUser.toString());
+		currentUser.setEmail(utilisateur.getEmail());
 		currentUser.setNomUtilisateur(utilisateur.getNomUtilisateur());
 		currentUser.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
 		currentUser.setUsername(utilisateur.getUsername());
 		currentUser.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
-		currentUser.setEmail(utilisateur.getEmail());
 		return utilisateurService.save(currentUser);
 	}
 

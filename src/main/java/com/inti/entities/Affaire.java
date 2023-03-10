@@ -2,6 +2,7 @@ package com.inti.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
@@ -22,6 +25,8 @@ public class Affaire implements Serializable {
 	private String reference;
 	private String titre;
 	private String description;
+	@Temporal(TemporalType.DATE)
+	private Date dateAffaire;
 	private int statut;
 
 	@OneToMany(mappedBy = "affaireFK")
@@ -36,30 +41,38 @@ public class Affaire implements Serializable {
 
 	}
 
-	public Affaire(String reference, String titre, String description, int statut) {
+
+	public Affaire(String reference, String titre, String description, Date dateAffaire, int statut) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
+		this.dateAffaire = dateAffaire;
 		this.statut = statut;
 	}
 
-	public Affaire(String reference, String titre, String description, int statut, List<Document> documents) {
+
+	public Affaire(Long idAffaire, String reference, String titre, String description, Date dateAffaire, int statut,
+			List<Document> documents) {
+		this.idAffaire = idAffaire;
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
+		this.dateAffaire = dateAffaire;
 		this.statut = statut;
 		this.documents = documents;
 	}
 
-	public Affaire(String reference, String titre, String description, int statut, List<Document> documents,
-			List<Tache> taches) {
+	public Affaire(String reference, String titre, String description, Date dateAffaire, int statut,
+			List<Document> documents, List<Tache> taches) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
+		this.dateAffaire = dateAffaire;
 		this.statut = statut;
 		this.documents = documents;
 		this.taches = taches;
 	}
+
 
 	public Long getIdAffaire() {
 		return idAffaire;
@@ -117,10 +130,22 @@ public class Affaire implements Serializable {
 		this.taches = taches;
 	}
 
+	
+	
+	public Date getDateAffaire() {
+		return dateAffaire;
+	}
+
+
+	public void setDateAffaire(Date dateAffaire) {
+		this.dateAffaire = dateAffaire;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Affaire [idAffaire=" + idAffaire + ", reference=" + reference + ", titre=" + titre + ", description="
-				+ description + ", statut=" + statut + "]";
+				+ description + ", dateAffaire=" + dateAffaire + ", statut=" + statut + "]";
 	}
 
 }
