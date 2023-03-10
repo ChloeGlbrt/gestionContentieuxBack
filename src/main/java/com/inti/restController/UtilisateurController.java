@@ -22,7 +22,7 @@ import com.inti.service.interfaces.IUtilisateurService;
 public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -38,10 +38,9 @@ public class UtilisateurController {
 /*
 	@PostMapping("/utilisateurs")
 	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
-		Utilisateur currUtilisateur = new Utilisateur(utilisateur.getNomUtilisateur(),
+		Utilisateur currUtilisateur = new Utilisateur(utilisateur.getEmail(), utilisateur.getNomUtilisateur(),
 				utilisateur.getPrenomUtilisateur(), utilisateur.getUsername(),
-				passwordEncoder.encode(utilisateur.getPassword()),
-				utilisateur.getEmail(), utilisateur.getRoles());
+				passwordEncoder.encode(utilisateur.getPassword()), utilisateur.getRoles());
 		return utilisateurService.save(currUtilisateur);
 	}
 	*/
@@ -82,4 +81,3 @@ public class UtilisateurController {
 		return utilisateurService.save(currentUser);
 	}
 }
-
