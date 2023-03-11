@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TACHES", schema = "gestion_contentieux")
@@ -27,16 +28,21 @@ public class Tache implements Serializable {
 	private String titre;
 	private String description;
 	private boolean statutAudience;
+	
 	@ManyToOne
 	@JoinColumn(name = "idUtilisateur")
 	private Utilisateur utilisateurFK;
+	
 	@ManyToOne
 	@JoinColumn(name = "idAffaire")
 	private Affaire affaireFK;
+	
 	@ManyToOne
 	@JoinColumn(name = "idTribunal")
 	private Tribunal tribunalFK;
+	
 	@OneToMany(mappedBy = "tacheFK")
+	@Transient
 	private List<Phase> phases = new ArrayList<>();
 
 	public Tache() {
