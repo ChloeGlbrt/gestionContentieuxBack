@@ -42,7 +42,7 @@ public class UtilisateurController {
 				utilisateur.getPrenomUtilisateur(),
 				utilisateur.getUsername(),
 				passwordEncoder.encode(utilisateur.getPassword()),
-				utilisateur.isStatutCompte(),
+				utilisateur.isEnabled(),
 				utilisateur.getRoles());
 		return utilisateurService.save(currUtilisateur);
 	}
@@ -62,7 +62,7 @@ public class UtilisateurController {
 		currentUser.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
 		currentUser.setUsername(utilisateur.getUsername());
 		currentUser.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
-		currentUser.setStatutCompte(utilisateur.isStatutCompte());
+		currentUser.setEnabled(utilisateur.isEnabled());
 		return utilisateurService.save(currentUser);
 	}
 
@@ -70,7 +70,7 @@ public class UtilisateurController {
 	public Utilisateur updateUtilisateurWithPatch(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
 		Utilisateur currentUser = utilisateurService.findOne(id);
-		currentUser.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+		currentUser.setEnabled(utilisateur.isEnabled());
 		return utilisateurService.save(currentUser);
 	}
 }
