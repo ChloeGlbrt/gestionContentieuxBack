@@ -34,4 +34,12 @@ public class AffaireService implements IAffaireService {
 		affaireRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Affaire> findByReference(String reference) {
+		// TODO Auto-generated method stub
+		return affaireRepository.findByReference(reference);
+	}
+
+
+
 }

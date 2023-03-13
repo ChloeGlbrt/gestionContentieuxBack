@@ -13,5 +13,7 @@ public interface IAffaireService {
 	Affaire save(Affaire affaire);
 
 	void delete(Long id);
+	
+	List<Affaire> findByReference(String reference);
 
 }
