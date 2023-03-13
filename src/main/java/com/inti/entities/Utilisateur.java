@@ -33,7 +33,7 @@ public class Utilisateur implements Serializable {
 	@Column(unique = true)
 	private String username;
 	private String password;
-	private boolean statutCompte;
+	private boolean enabled;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "PROFILS", joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "idUtilisateur"), inverseJoinColumns = @JoinColumn(name = "id_role", referencedColumnName = "idRole"))
@@ -48,34 +48,34 @@ public class Utilisateur implements Serializable {
 	}
 
 	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
-			boolean statutCompte) {
+			boolean enabled) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
-		this.statutCompte = statutCompte;
+		this.enabled = enabled;
 	}
 
 	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
-			boolean statutCompte, Set<Role> roles) {
+			boolean enabled, Set<Role> roles) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
-		this.statutCompte = statutCompte;
+		this.enabled = enabled;
 		this.roles = roles;
 	}
 
 	public Utilisateur(String email, String nomUtilisateur, String prenomUtilisateur, String username, String password,
-			boolean statutCompte, Set<Role> roles, List<Tache> taches) {
+			boolean enabled, Set<Role> roles, List<Tache> taches) {
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
-		this.statutCompte = statutCompte;
+		this.enabled = enabled;
 		this.roles = roles;
 		this.taches = taches;
 	}
@@ -144,19 +144,19 @@ public class Utilisateur implements Serializable {
 		this.taches = taches;
 	}
 
-	public boolean isStatutCompte() {
-		return statutCompte;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setStatutCompte(boolean statutCompte) {
-		this.statutCompte = statutCompte;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", email=" + email + ", nomUtilisateur=" + nomUtilisateur
 				+ ", prenomUtilisateur=" + prenomUtilisateur + ", username=" + username + ", password=" + password
-				+ ", statutCompte=" + statutCompte + ", roles=" + roles + "]";
+				+ ", enabled=" + enabled + ", roles=" + roles + "]";
 	}
 
 }
